@@ -9,15 +9,6 @@
     "date": "2026-05-31T00:00:00.000Z"
   },
   {
-    "id": 1780263677353,
-    "title": "Prueba 3",
-    "tag": "noticia",
-    "image": "https://www.c-and-a.com/image/upload/q_auto:good,ar_4:3,c_fill,g_auto:face,w_342/s/editorial/fotografie/fotografieren-kategorie-text-media-header.jpg",
-    "excerpt": "Prueba de noticia",
-    "content": "Esto es una prueba.",
-    "date": "2026-05-31T00:00:00.000Z"
-  },
-  {
     "id": 1780263627125,
     "title": "PRueba 2",
     "tag": "rumor",
