@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MW4 News - Noticia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #000000 0%, #0a1f0a 100%);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #4caf50;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #4caf50;
+            font-size: 2.2rem;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navegación */
+        .nav-bar {
+            background: #111;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid #1e2a1e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-home {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+            color: #6dbf6d;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #4caf50;
+            color: #4caf50;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .share-btn:hover {
+            background: #4caf50;
+            color: black;
+        }
+
+        /* Contenedor principal */
+        .post-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Portada de la noticia */
+        .post-cover {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #1e2a1e;
+        }
+
+        /* Etiqueta */
+        .post-tag {
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tag-oficial { background: #4caf50; color: #000; }
+        .tag-noticia { background: #2196f3; color: #fff; }
+        .tag-rumor { background: #ff9800; color: #000; }
+        .tag-review { background: #9c27b0; color: #fff; }
+
+        /* Título */
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        /* Fecha */
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4caf50;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #1e2a1e;
+        }
+
+        /* Contenido */
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .post-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .post-content h2 {
+            color: #4caf50;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .post-content h3 {
+            color: #4caf50;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid #1e2a1e;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .post-content a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+
+        .post-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Noticias relacionadas */
+        .related-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1e2a1e;
+        }
+
+        .related-title {
+            color: #4caf50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #1e2a1e;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 0.8rem;
+        }
+
+        .related-card-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #050505;
+            border-top: 1px solid #

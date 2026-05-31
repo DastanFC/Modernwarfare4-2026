@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MW4 News - Modern Warfare 4 2026</title>
+    <title>MW4 News - Noticia</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -18,473 +18,180 @@
             background: #0a0a0a;
             color: #e0e0e0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Efecto de carga inicial */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes glowPulse {
-            0% { text-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
-            100% { text-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
-        }
-
-        @keyframes borderGlow {
-            0% { border-color: #4caf50; box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
-            50% { border-color: #6dbf6d; box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
-            100% { border-color: #4caf50; box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); }
-        }
-
-        /* Header */
         header {
             background: linear-gradient(135deg, #000000 0%, #0a1f0a 100%);
-            padding: 4rem 2rem;
+            padding: 2rem;
             text-align: center;
             border-bottom: 3px solid #4caf50;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(76,175,80,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .logo-container {
-            position: relative;
-            z-index: 1;
         }
 
         .logo {
-            font-size: 4rem;
+            font-size: 2rem;
             font-weight: 900;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             color: #ffffff;
-            animation: glowPulse 2s ease-in-out infinite;
         }
 
         .logo span {
             color: #4caf50;
-            font-size: 4.5rem;
+            font-size: 2.2rem;
         }
 
-        .tagline {
-            color: #4caf50;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+        .logo a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        /* Filtros */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding: 2rem;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
+        .nav-bar {
+            background: #111;
+            padding: 0.8rem 2rem;
             border-bottom: 1px solid #1e2a1e;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .filter-btn {
+        .back-home {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+            color: #6dbf6d;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .share-btn {
             background: transparent;
             border: 1px solid #4caf50;
             color: #4caf50;
-            padding: 0.6rem 1.8rem;
-            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Roboto', sans-serif;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s;
+            font-size: 0.8rem;
         }
 
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(76, 175, 80, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .filter-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
+        .share-btn:hover {
             background: #4caf50;
-            color: #000000;
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            color: black;
         }
 
-        /* Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1400px;
+        .post-container {
+            max-width: 900px;
             margin: 3rem auto;
             padding: 0 2rem;
         }
 
-        /* Tarjeta con efectos */
-        .news-card {
-            background: linear-gradient(135deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.95));
-            backdrop-filter: blur(5px);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            position: relative;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .news-card:nth-child(1) { animation-delay: 0.05s; }
-        .news-card:nth-child(2) { animation-delay: 0.1s; }
-        .news-card:nth-child(3) { animation-delay: 0.15s; }
-        .news-card:nth-child(4) { animation-delay: 0.2s; }
-        .news-card:nth-child(5) { animation-delay: 0.25s; }
-        .news-card:nth-child(6) { animation-delay: 0.3s; }
-        .news-card:nth-child(7) { animation-delay: 0.35s; }
-        .news-card:nth-child(8) { animation-delay: 0.4s; }
-
-        .news-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .post-cover {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .news-card:hover::before {
-            left: 100%;
-        }
-
-        .news-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: #4caf50;
-            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.3);
-        }
-
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            height: 220px;
-        }
-
-        .card-image {
-            width: 100%;
-            height: 100%;
+            max-height: 450px;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #1e2a1e;
         }
 
-        .news-card:hover .card-image {
-            transform: scale(1.1);
-        }
-
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .news-card:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            position: relative;
-        }
-
-        .card-tag {
+        .post-tag {
             display: inline-block;
-            padding: 0.3rem 1rem;
-            font-size: 0.7rem;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.8rem;
             font-weight: 700;
             border-radius: 20px;
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s;
         }
 
-        .news-card:hover .card-tag {
-            transform: scale(1.05);
-        }
+        .tag-oficial { background: #4caf50; color: #000; }
+        .tag-noticia { background: #2196f3; color: #fff; }
+        .tag-rumor { background: #ff9800; color: #000; }
+        .tag-review { background: #9c27b0; color: #fff; }
 
-        .tag-oficial { background: #4caf50; color: #000; box-shadow: 0 0 10px rgba(76,175,80,0.5); }
-        .tag-noticia { background: #2196f3; color: #fff; box-shadow: 0 0 10px rgba(33,150,243,0.5); }
-        .tag-rumor { background: #ff9800; color: #000; box-shadow: 0 0 10px rgba(255,152,0,0.5); }
-        .tag-review { background: #9c27b0; color: #fff; box-shadow: 0 0 10px rgba(156,39,176,0.5); }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
             color: #ffffff;
-            line-height: 1.4;
-            transition: color 0.3s;
+            line-height: 1.3;
         }
 
-        .news-card:hover .card-title {
-            color: #4caf50;
-        }
-
-        .card-date {
-            font-size: 0.75rem;
-            color: #4caf50;
-            font-weight: 500;
+        .post-date {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-date i {
-            font-size: 0.7rem;
-        }
-
-        .card-excerpt {
-            font-size: 0.85rem;
-            color: #aaaaaa;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* Botón Mostrar Más */
-        .load-more {
-            display: block;
-            margin: 2rem auto 4rem;
-            background: transparent;
-            border: 2px solid #4caf50;
+            gap: 0.5rem;
             color: #4caf50;
-            padding: 0.8rem 2.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .load-more::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .load-more:hover::before {
-            left: 100%;
-        }
-
-        .load-more:hover {
-            background: #4caf50;
-            color: #000000;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
-            animation: borderGlow 1s infinite;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(to top, #050505, #0a0a0a);
-            border-top: 1px solid #1e2a1e;
-            color: #666;
-            font-size: 0.8rem;
-        }
-
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #111, #0a0a0a);
-            border: 1px solid #4caf50;
-            border-radius: 16px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            padding: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid #1e2a1e;
-            position: sticky;
-            top: 0;
-            background: #111;
-            z-index: 1;
         }
 
-        .modal-header h2 {
-            color: #4caf50;
-            margin-right: 2rem;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #4caf50;
-            transition: all 0.3s;
-        }
-
-        .close-modal:hover {
-            transform: scale(1.1);
-            color: #ff6b6b;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .modal-body img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .modal-body p {
-            margin-bottom: 1rem;
+        .post-content {
+            font-size: 1.1rem;
             line-height: 1.8;
         }
 
-        .modal-body h1, .modal-body h2, .modal-body h3 {
+        .post-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .post-content h2 {
             color: #4caf50;
-            margin: 1rem 0 0.5rem;
+            margin: 1.5rem 0 1rem;
         }
 
-        .modal-tag {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
+        .post-content h3 {
+            color: #4caf50;
+            margin: 1.2rem 0 0.8rem;
         }
 
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid #1e2a1e;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+        .post-content ul, .post-content ol {
+            margin: 1rem 0 1rem 2rem;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #4caf50;
-            border-radius: 4px;
+        .post-content a {
+            color: #4caf50;
+            text-decoration: none;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6dbf6d;
+        .post-content a:hover {
+            text-decoration: underline;
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .news-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 900px) {
-            .news-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .news-grid { grid-template-columns: 1fr; }
-            .logo { font-size: 2.2rem; }
-            .logo span { font-size: 2.8rem; }
+        .post-content blockquote {
+            border-left: 4px solid #4caf50;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #cccccc;
         }
 
-        /* Spinner de carga */
+        .post-content iframe {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
         .loader {
             text-align: center;
             padding: 3rem;
-            grid-column: 1/-1;
         }
 
         .loader i {
@@ -497,239 +204,190 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        .error-message {
+            text-align: center;
+            padding: 3rem;
+            color: #ff6b6b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #050505;
+            border-top: 1px solid #1e2a1e;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .post-title { font-size: 1.8rem; }
+            .post-container { padding: 0 1rem; }
+            .share-buttons { margin-top: 0.5rem; }
+            .nav-bar { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo-container">
-        <h1 class="logo">MODERN WARFARE <span>4</span></h1>
-        <p class="tagline">2026 • NOTICIAS OFICIALES</p>
+        <h1 class="logo"><a href="index.html">MODERN WARFARE <span>4</span></a></h1>
     </div>
 </header>
 
-<main>
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">TODAS</button>
-        <button class="filter-btn" data-filter="noticia"><i class="fas fa-newspaper"></i> NOTICIA</button>
-        <button class="filter-btn" data-filter="oficial"><i class="fas fa-check-circle"></i> OFICIAL</button>
-        <button class="filter-btn" data-filter="rumor"><i class="fas fa-microphone-alt"></i> RUMOR</button>
-        <button class="filter-btn" data-filter="review"><i class="fas fa-star"></i> REVIEW</button>
+<div class="nav-bar">
+    <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="share-buttons">
+        <button class="share-btn" id="shareTwitter"><i class="fab fa-twitter"></i> Twitter</button>
+        <button class="share-btn" id="shareFacebook"><i class="fab fa-facebook"></i> Facebook</button>
+        <button class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        <button class="share-btn" id="copyLink"><i class="fas fa-link"></i> Copiar enlace</button>
     </div>
+</div>
 
-    <div class="news-grid" id="newsGrid">
-        <div class="loader"><i class="fas fa-circle-notch"></i> Cargando noticias...</div>
-    </div>
-
-    <button id="loadMoreBtn" class="load-more"><i class="fas fa-arrow-down"></i> MOSTRAR MÁS</button>
-</main>
+<div class="post-container" id="postContainer">
+    <div class="loader"><i class="fas fa-circle-notch"></i> Cargando noticia...</div>
+</div>
 
 <footer>
     <p>Modern Warfare 4 © 2026 - Fan Blog no oficial | <i class="fas fa-skull"></i> Task Force 141</p>
 </footer>
 
-<!-- Modal para noticia completa -->
-<div id="newsModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close-modal">&times;</span>
-            <h2 id="modalTitle"></h2>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <!-- Aquí se inyectará el contenido completo de la noticia -->
-        </div>
-    </div>
-</div>
-
 <script>
-    // Configuración - CAMBIA LA URL si es necesario
+    // Configuración
     const POSTS_URL = 'posts.json';
-    
-    let allPosts = [];
-    let visiblePosts = 8;
-    let currentFilter = 'all';
-    let isLoading = false;
+    let currentPost = null;
 
-    async function loadPosts() {
-        const grid = document.getElementById('newsGrid');
+    // Obtener ID de la URL (?id=123)
+    function getPostIdFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    // Convertir URLs de YouTube a iframe en el contenido mostrado
+    function convertYouTubeUrlsToEmbed(html) {
+        const youtubeRegex = /https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)(?:&[^<>\s]*)?/gi;
+        return html.replace(youtubeRegex, (match, videoId) => {
+            return `<div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 1.5rem 0;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+        });
+    }
+
+    async function loadPost() {
+        const postId = getPostIdFromURL();
+        const container = document.getElementById('postContainer');
+        
+        if (!postId) {
+            container.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-triangle"></i> No se especificó ninguna noticia.</div>';
+            return;
+        }
+        
         try {
             const response = await fetch(POSTS_URL + '?t=' + new Date().getTime());
-            if (!response.ok) {
-                throw new Error('No se pudo cargar posts.json');
+            if (!response.ok) throw new Error('No se pudo cargar posts.json');
+            
+            const posts = await response.json();
+            currentPost = posts.find(p => p.id == postId);
+            
+            if (!currentPost) {
+                container.innerHTML = '<div class="error-message"><i class="fas fa-skull"></i> Noticia no encontrada.</div>';
+                return;
             }
-            allPosts = await response.json();
-            renderPosts();
-        } catch (error) {
-            console.error('Error:', error);
-            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem;"><i class="fas fa-exclamation-triangle"></i> Error cargando noticias. Asegúrate de que posts.json existe.</div>';
-            document.getElementById('loadMoreBtn').style.display = 'none';
-        }
-    }
-
-    function getFilteredPosts() {
-        if (currentFilter === 'all') return allPosts;
-        return allPosts.filter(post => post.tag === currentFilter);
-    }
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const ahora = new Date();
-        const diff = Math.floor((ahora - date) / (1000 * 60 * 60 * 24));
-        
-        if (diff === 0) return 'Hoy';
-        if (diff === 1) return 'Ayer';
-        if (diff < 7) return `Hace ${diff} días`;
-        return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
-    }
-
-    function truncateText(text, maxLength = 100) {
-        if (!text) return '';
-        const cleanText = text.replace(/<[^>]*>/g, '');
-        if (cleanText.length <= maxLength) return cleanText;
-        return cleanText.substring(0, maxLength) + '...';
-    }
-
-    function renderPosts() {
-        const grid = document.getElementById('newsGrid');
-        const filtered = getFilteredPosts();
-        const postsToShow = filtered.slice(0, visiblePosts);
-        
-        if (postsToShow.length === 0 && filtered.length === 0) {
-            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem;"><i class="fas fa-skull"></i> No hay noticias aún. Vuelve pronto...</div>';
-            document.getElementById('loadMoreBtn').style.display = 'none';
-            return;
-        }
-        
-        if (postsToShow.length === 0 && filtered.length > 0) {
-            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem;"><i class="fas fa-filter"></i> No hay noticias con este filtro</div>';
-            document.getElementById('loadMoreBtn').style.display = 'none';
-            return;
-        }
-        
-        grid.innerHTML = postsToShow.map((post, index) => {
+            
+            // Actualizar título de la página
+            document.title = `${currentPost.title} - MW4 News`;
+            
+            // Definir clases de etiqueta
             const tagClass = {
                 'oficial': 'tag-oficial',
                 'noticia': 'tag-noticia',
                 'rumor': 'tag-rumor',
                 'review': 'tag-review'
-            }[post.tag] || 'tag-noticia';
+            }[currentPost.tag] || 'tag-noticia';
             
             const tagIcon = {
                 'oficial': '✓',
                 'noticia': '📰',
                 'rumor': '🔮',
                 'review': '⭐'
-            }[post.tag] || '📰';
+            }[currentPost.tag] || '📰';
             
-            return `
-                <div class="news-card" data-id="${post.id}" style="animation-delay: ${index * 0.05}s">
-                    <div class="image-container">
-                        <img class="card-image" src="${post.image || 'https://via.placeholder.com/400x220/1a1a1a/4caf50?text=MW4'}" alt="${escapeHtml(post.title)}" loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/400x220/1a1a1a/4caf50?text=MW4'">
-                        <div class="image-overlay"></div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-tag ${tagClass}">${tagIcon} ${post.tag.toUpperCase()}</span>
-                        <h3 class="card-title">${escapeHtml(post.title)}</h3>
-                        <div class="card-date"><i class="far fa-calendar-alt"></i> ${formatDate(post.date)}</div>
-                        <p class="card-excerpt">${escapeHtml(truncateText(post.excerpt || post.content, 90))}</p>
-                    </div>
+            // Formatear fecha
+            const dateObj = new Date(currentPost.date);
+            const formattedDate = dateObj.toLocaleDateString('es-ES', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Convertir YouTube URLs en el contenido
+            let contentHTML = currentPost.content || '<p>Contenido no disponible</p>';
+            contentHTML = convertYouTubeUrlsToEmbed(contentHTML);
+            
+            // Renderizar
+            container.innerHTML = `
+                ${currentPost.image ? `<img class="post-cover" src="${currentPost.image}" alt="${currentPost.title}" onerror="this.style.display='none'">` : ''}
+                <span class="post-tag ${tagClass}">${tagIcon} ${currentPost.tag.toUpperCase()}</span>
+                <h1 class="post-title">${escapeHtml(currentPost.title)}</h1>
+                <div class="post-date">
+                    <i class="far fa-calendar-alt"></i> ${formattedDate}
+                </div>
+                <div class="post-content">
+                    ${contentHTML}
                 </div>
             `;
-        }).join('');
-        
-        const loadBtn = document.getElementById('loadMoreBtn');
-        if (visiblePosts >= filtered.length) {
-            loadBtn.style.display = 'none';
-        } else {
-            loadBtn.style.display = 'block';
+            
+        } catch (error) {
+            console.error('Error:', error);
+            container.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-triangle"></i> Error cargando la noticia. Asegúrate de que posts.json existe.</div>';
         }
-        
-        // Añadir event listeners a las tarjetas
-        document.querySelectorAll('.news-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const postId = parseInt(card.dataset.id);
-                showPostDetail(postId);
-            });
-        });
     }
-
+    
     function escapeHtml(text) {
         if (!text) return '';
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
-
-    function showPostDetail(postId) {
-        const post = allPosts.find(p => p.id === postId);
-        if (!post) return;
-        
-        const modal = document.getElementById('newsModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBody = document.getElementById('modalBody');
-        
-        const tagClass = {
-            'oficial': 'tag-oficial',
-            'noticia': 'tag-noticia',
-            'rumor': 'tag-rumor',
-            'review': 'tag-review'
-        }[post.tag] || 'tag-noticia';
-        
-        const tagIcon = {
-            'oficial': '✓',
-            'noticia': '📰',
-            'rumor': '🔮',
-            'review': '⭐'
-        }[post.tag] || '📰';
-        
-        modalTitle.innerHTML = post.title;
-        
-        modalBody.innerHTML = `
-            <div style="margin-bottom: 1rem;">
-                <span class="modal-tag ${tagClass}">${tagIcon} ${post.tag.toUpperCase()}</span>
-                <div style="color: #4caf50; font-size: 0.8rem; margin-top: 0.5rem;">
-                    <i class="far fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                </div>
-            </div>
-            ${post.content || '<p>Contenido no disponible</p>'}
-        `;
-        
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    
+    // Compartir en redes sociales
+    function shareOnTwitter() {
+        if (!currentPost) return;
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent(currentPost.title);
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
     }
     
-    // Cerrar modal
-    document.querySelector('.close-modal').addEventListener('click', () => {
-        document.getElementById('newsModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
+    function shareOnFacebook() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    }
     
-    window.addEventListener('click', (e) => {
-        const modal = document.getElementById('newsModal');
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    document.getElementById('loadMoreBtn').addEventListener('click', () => {
-        visiblePosts += 4;
-        renderPosts();
-    });
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            visiblePosts = 8;
-            renderPosts();
+    function shareOnWhatsApp() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent(currentPost.title);
+        window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+    }
+    
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('✅ Enlace copiado al portapapeles');
+        }).catch(() => {
+            alert('❌ No se pudo copiar el enlace');
         });
-    });
-
-    // Cargar posts al iniciar
-    loadPosts();
+    }
+    
+    // Event listeners para compartir
+    document.getElementById('shareTwitter').addEventListener('click', shareOnTwitter);
+    document.getElementById('shareFacebook').addEventListener('click', shareOnFacebook);
+    document.getElementById('shareWhatsApp').addEventListener('click', shareOnWhatsApp);
+    document.getElementById('copyLink').addEventListener('click', copyLink);
+    
+    // Cargar la noticia
+    loadPost();
 </script>
 
 </body>
