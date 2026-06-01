@@ -146,9 +146,7 @@
             margin-bottom: 1.2rem;
         }
 
-        /* Evitar que el navegador colapse saltos dentro de párrafos con <br> */
-        .post-content p:empty { display: none; }
-        .post-content br + br { display: none; } /* nunca más de un salto doble */
+        /* br dobles son saltos de párrafo del editor — no ocultarlos */
 
         .post-content h2 {
             color: #4caf50;
