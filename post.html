@@ -267,6 +267,40 @@
                 font-size: 0.7rem;
             }
         }
+
+function textToHtml(text) {
+    if (!text) return '';
+    let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    
+    // YouTube
+    const youtubeRegex = /https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/g;
+    html = html.replace(youtubeRegex, `<div style="margin:1rem 0;"><iframe width="100%" style="aspect-ratio:16/9; border-radius:12px;" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe></div>`);
+    
+    // Imágenes
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%; margin:1rem 0;">');
+    
+    // Negritas y cursivas
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    
+    // Listas
+    html = html.replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+    html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+    
+    // Párrafos
+    const paragraphs = html.split(/\n\s*\n/);
+    html = paragraphs.map(p => {
+        p = p.trim();
+        if (!p) return '';
+        if (p.startsWith('<ul>') || p.startsWith('<ol>')) return p;
+        p = p.replace(/\n/g, '<br>');
+        return `<p>${p}</p>`;
+    }).join('');
+    
+    return html;
+}
+        
     </style>
 </head>
 <body>
