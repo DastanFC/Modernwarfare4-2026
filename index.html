@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>MW4 News - Modern Warfare 4 2026</title>
@@ -117,6 +113,7 @@
             max-width: 1400px;
             margin: 2rem auto;
             padding: 0 1.5rem;
+            align-items: start;
         }
 
         .news-card {
@@ -128,6 +125,8 @@
             cursor: pointer;
             border: 1px solid rgba(76, 175, 80, 0.3);
             animation: fadeInUp 0.5s ease-out backwards;
+            display: flex;
+            flex-direction: column;
         }
 
         .news-card:hover {
@@ -171,6 +170,37 @@
         .tag-noticia { background: #2196f3; color: #fff; }
         .tag-rumor { background: #ff9800; color: #000; }
         .tag-review { background: #9c27b0; color: #fff; }
+        .tag-mapas   { background: #1b5e20; color: #69f0ae; }
+        .tag-clases  { background: #1a237e; color: #c5cae9; }
+        .tag-armas   { background: #b71c1c; color: #ffcdd2; }
+        .tag-modos   { background: #4a148c; color: #e1bee7; }
+        .tag-warzone { background: #e65100; color: #ffe0b2; }
+        .tag-dmz     { background: #33691e; color: #dcedc8; }
+        .tag-campana { background: #783500; color: #ffd54f; }
+        .tag-skins   { background: #880e4f; color: #fce4ec; }
+        .tag-informacion  { background: #006064; color: #80deea; }
+        .tag-curiosidades { background: #37474f; color: #b0bec5; }
+        .tag-ediciones    { background: #4a148c; color: #ea80fc; }
+
+        /* Badge ACTUALIZADO */
+        .updated-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, #ff6f00, #ffab00);
+            color: #000;
+            font-size: 0.55rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 0 2px 8px rgba(255,111,0,0.5);
+            z-index: 2;
+        }
 
         .card-title {
             font-size: 1rem;
@@ -291,7 +321,16 @@
         <button class="filter-btn" data-filter="noticia"><i class="fas fa-newspaper"></i> NOTICIA</button>
         <button class="filter-btn" data-filter="oficial"><i class="fas fa-check-circle"></i> OFICIAL</button>
         <button class="filter-btn" data-filter="rumor"><i class="fas fa-microphone-alt"></i> RUMOR</button>
+        <button class="filter-btn" data-filter="informacion">📡 INFORMACIÓN</button>
+        <button class="filter-btn" data-filter="curiosidades">🧠 CURIOSIDADES</button>
+        <button class="filter-btn" data-filter="ediciones">💎 EDICIONES</button>
         <button class="filter-btn" data-filter="review"><i class="fas fa-star"></i> REVIEW</button>
+        <button class="filter-btn" data-filter="mapas">🗺️ MAPAS</button>
+        <button class="filter-btn" data-filter="clases">🎖️ CLASES</button>
+        <button class="filter-btn" data-filter="armas">🔫 ARMAS</button>
+        <button class="filter-btn" data-filter="modos">🎮 MODOS</button>
+        <button class="filter-btn" data-filter="warzone">🪂 WARZONE</button>
+        <button class="filter-btn" data-filter="skins">🎨 SKINS</button>
     </div>
 
     <div class="news-grid" id="newsGrid">
@@ -307,7 +346,7 @@
 
 <script>
     // Configuración
-    const POSTS_URL = 'https://raw.githubusercontent.com/DastanFC/Modernwarfare4-2026/main/posts.json';
+    const POSTS_URL = 'https://raw.githubusercontent.com/DastanFC/MW4/main/posts.json';
     
     let allPosts = [];
     let visiblePosts = 8;
@@ -380,22 +419,49 @@
         
         grid.innerHTML = postsToShow.map((post, index) => {
             const tagClass = {
-                'oficial': 'tag-oficial',
-                'noticia': 'tag-noticia',
-                'rumor': 'tag-rumor',
-                'review': 'tag-review'
+                'oficial':      'tag-oficial',
+                'noticia':      'tag-noticia',
+                'rumor':        'tag-rumor',
+                'review':       'tag-review',
+                'mapas':        'tag-mapas',
+                'clases':       'tag-clases',
+                'armas':        'tag-armas',
+                'modos':        'tag-modos',
+                'warzone':      'tag-warzone',
+                'dmz':          'tag-dmz',
+                'campana':      'tag-campana',
+                'skins':        'tag-skins',
+                'informacion':  'tag-informacion',
+                'curiosidades': 'tag-curiosidades',
+                'ediciones':    'tag-ediciones'
             }[post.tag] || 'tag-noticia';
             
             const tagIcon = {
-                'oficial': '✓',
-                'noticia': '📰',
-                'rumor': '🔮',
-                'review': '⭐'
+                'oficial':      '✓',
+                'noticia':      '📰',
+                'rumor':        '🔮',
+                'review':       '⭐',
+                'mapas':        '🗺️',
+                'clases':       '🎖️',
+                'armas':        '🔫',
+                'modos':        '🎮',
+                'warzone':      '🪂',
+                'dmz':          '🏴',
+                'campana':      '⚔️',
+                'skins':        '🎨',
+                'informacion':  '📡',
+                'curiosidades': '🧠',
+                'ediciones':    '💎'
             }[post.tag] || '📰';
+
+            const updatedBadge = post.updated
+                ? `<div class="updated-badge">🔄 Actualizado</div>`
+                : '';
             
             return `
                 <div class="news-card" data-id="${post.id}" style="animation-delay: ${index * 0.05}s">
                     <div class="image-container">
+                        ${updatedBadge}
                         <img class="card-image" src="${post.image || 'https://via.placeholder.com/400x180/1a1a1a/4caf50?text=MW4'}" alt="${escapeHtml(post.title)}" loading="lazy"
                              onerror="this.src='https://via.placeholder.com/400x180/1a1a1a/4caf50?text=MW4'">
                     </div>

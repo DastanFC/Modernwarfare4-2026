@@ -95,13 +95,36 @@
             padding: 0 2rem;
         }
 
+        .post-cover-wrap {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
         .post-cover {
             width: 100%;
             max-height: 450px;
             object-fit: cover;
             border-radius: 12px;
-            margin-bottom: 2rem;
             border: 1px solid #1e2a1e;
+            display: block;
+        }
+
+        .post-updated-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #ff6f00, #ffab00);
+            color: #000;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 3px 12px rgba(255,111,0,0.6);
         }
 
         .post-tag {
@@ -421,8 +444,16 @@
             let contentHTML = procesarContenido(currentPost.content || '');
             if (!contentHTML) contentHTML = '<p>Contenido no disponible</p>';
             
+            const updatedBadge = currentPost.updated
+                ? `<div class="post-updated-badge">🔄 Nueva información añadida</div>`
+                : '';
+
             container.innerHTML = `
-                ${currentPost.image ? `<img class="post-cover" src="${currentPost.image}" alt="${currentPost.title}" onerror="this.style.display='none'">` : ''}
+                ${currentPost.image ? `
+                <div class="post-cover-wrap">
+                    <img class="post-cover" src="${currentPost.image}" alt="${currentPost.title}" onerror="this.style.display='none'">
+                    ${updatedBadge}
+                </div>` : (currentPost.updated ? `<div style="margin-bottom:1rem;">${updatedBadge.replace('position:absolute','position:relative')}</div>` : '')}
                 <span class="post-tag ${tagClass}">${currentPost.tag.toUpperCase()}</span>
                 <h1 class="post-title">${escapeHtml(currentPost.title)}</h1>
                 <div class="post-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</div>
