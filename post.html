@@ -117,7 +117,15 @@
         .tag-oficial { background: #4caf50; color: #000; }
         .tag-noticia { background: #2196f3; color: #fff; }
         .tag-rumor { background: #ff9800; color: #000; }
-        .tag-review { background: #9c27b0; color: #fff; }
+        .tag-review  { background: #9c27b0; color: #fff; }
+        .tag-mapas   { background: #1b5e20; color: #69f0ae; }
+        .tag-clases  { background: #1a237e; color: #c5cae9; }
+        .tag-armas   { background: #b71c1c; color: #ffcdd2; }
+        .tag-modos   { background: #4a148c; color: #e1bee7; }
+        .tag-warzone { background: #e65100; color: #ffe0b2; }
+        .tag-dmz     { background: #33691e; color: #dcedc8; }
+        .tag-campana { background: #783500; color: #ffd54f; }
+        .tag-skins   { background: #880e4f; color: #fce4ec; }
 
         .post-title {
             font-size: 2.5rem;
@@ -380,10 +388,18 @@
             document.title = `${currentPost.title} - MW4 News`;
             
             const tagClass = {
-                'oficial': 'tag-oficial',
-                'noticia': 'tag-noticia',
-                'rumor': 'tag-rumor',
-                'review': 'tag-review'
+                'oficial':  'tag-oficial',
+                'noticia':  'tag-noticia',
+                'rumor':    'tag-rumor',
+                'review':   'tag-review',
+                'mapas':    'tag-mapas',
+                'clases':   'tag-clases',
+                'armas':    'tag-armas',
+                'modos':    'tag-modos',
+                'warzone':  'tag-warzone',
+                'dmz':      'tag-dmz',
+                'campana':  'tag-campana',
+                'skins':    'tag-skins'
             }[currentPost.tag] || 'tag-noticia';
             
             const dateObj = new Date(currentPost.date);
