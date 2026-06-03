@@ -209,10 +209,25 @@
             .logo { font-size:1.5rem; } .logo span { font-size:2rem; }
             .tagline { font-size:0.6rem; letter-spacing:1px; }
             .card-title { font-size:0.9rem; } .card-excerpt { font-size:0.7rem; }
-            header { padding:1.5rem 1rem 1.2rem; } .image-container { height:160px; }
-            .header-inner { flex-direction: column; align-items: center; }
-            .logo-container { text-align: center; }
-            .header-meta { align-items: center; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 0.6rem; }
+            header { padding:1.2rem 1rem 1rem; } .image-container { height:160px; }
+            .header-inner { flex-direction: column; align-items: center; gap: 0.6rem; }
+            .logo-container {
+                position: static;
+                transform: none;
+                left: auto;
+                text-align: center;
+                flex: none;
+                width: 100%;
+            }
+            .header-meta {
+                align-items: center;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin-left: 0;
+                width: 100%;
+            }
             .last-update { text-align: center; font-size:0.55rem; }
             .news-counter { text-align: center; }
             .filter-toggle { border-bottom:1px solid rgba(76,175,80,0.1); }
