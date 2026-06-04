@@ -181,6 +181,24 @@
         }
         .twitter-share-btn:hover { border-color: #fff; color: #fff; }
 
+        /* Contador de comentarios Disqus */
+        .card-comment-count {
+            margin-left: auto;
+            color: #555;
+            font-size: 0.58rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+        .news-card:hover .card-comment-count { color: #4caf50; }
+        .card-comment-count a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         .load-more {
             display: block; margin: 1rem auto 3rem; background: transparent; border: 2px solid #4caf50;
             color: #4caf50; padding: 0.7rem 2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
@@ -506,6 +524,7 @@
                     <div class="card-share">
                         <button class="share-btn" data-id="${post.id}" data-title="${escapeHtml(post.title)}"><i class="fas fa-link"></i> Copiar</button>
                         <button class="twitter-share-btn" data-id="${post.id}" data-title="${escapeHtml(post.title)}"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622z"/></svg> Twittear</button>
+                        <span class="card-comment-count"><a href="post.html?id=${post.id}#disqus_thread" data-disqus-identifier="post.html?id=${post.id}">💬</a></span>
                     </div>
                 </div>
             </div>`;
@@ -598,5 +617,8 @@
 
     loadPosts();
 </script>
+<!-- ===== DISQUS CONTADOR DE COMENTARIOS ===== -->
+<script id="dsq-count-scr" src="//mw4.disqus.com/count.js" async></script>
+
 </body>
 </html>
