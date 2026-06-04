@@ -565,6 +565,50 @@
         @media (max-width: 380px) {
             .related-grid { grid-template-columns: 1fr; }
         }
+
+        /* ===== SECCIÓN DISQUS ===== */
+        .disqus-section {
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+            padding: 0 2rem 2rem;
+            border-top: 1px solid #1e2a1e;
+        }
+
+        .disqus-title {
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #4caf50;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .disqus-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(76,175,80,0.2);
+        }
+
+        /* Forzar fondo oscuro en el iframe de Disqus */
+        #disqus_thread {
+            background: transparent;
+            color-scheme: dark;
+        }
+
+        @media (max-width: 600px) {
+            .disqus-section {
+                padding: 0 1rem 2rem;
+            }
+            .disqus-title {
+                padding-top: 2rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -590,6 +634,12 @@
 </div>
 
 <div id="relatedSection"></div>
+
+<!-- ===== COMENTARIOS DISQUS ===== -->
+<div class="disqus-section">
+    <div class="disqus-title"><i class="fas fa-comments"></i> Comentarios</div>
+    <div id="disqus_thread"></div>
+</div>
 
 <footer>
     <p>Modern Warfare 4 © 2026 - Fan Blog no oficial | <i class="fas fa-skull"></i> Task Force 141</p>
@@ -738,6 +788,9 @@
 
             // Entradas relacionadas
             renderRelatedPosts(posts, currentPost.id, currentPost.tag);
+
+            // Cargar Disqus una vez el post está renderizado
+            loadDisqus();
             
         } catch (error) {
             console.error('Error:', error);
@@ -954,6 +1007,43 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     observer.observe(document.getElementById('postContainer'), { childList: true, subtree: true });
 });
+</script>
+
+<!-- ===== SCRIPT DISQUS ===== -->
+<script>
+    // Disqus se carga después de que loadPost() termine de renderizar el contenido
+    function loadDisqus() {
+        if (typeof DISQUS !== 'undefined') {
+            // Si ya estaba cargado (navegación SPA), resetear
+            DISQUS.reset({
+                reload: true,
+                config: function () {
+                    this.page.url = window.location.href;
+                    this.page.identifier = window.location.pathname + window.location.search;
+                }
+            });
+            return;
+        }
+
+        var disqus_config = function () {
+            this.page.url = window.location.href;
+            this.page.identifier = window.location.pathname + window.location.search;
+        };
+
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://mw4.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            s.async = true;
+            (d.head || d.body).appendChild(s);
+        })();
+    }
+
+    // Inyectar variable de tema oscuro antes de que cargue Disqus
+    window.disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = window.location.pathname + window.location.search;
+    };
 </script>
 
 </body>
