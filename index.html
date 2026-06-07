@@ -209,6 +209,17 @@
             width: 100%; border-radius: 8px; object-fit: cover;
             max-height: 110px; display: block; margin-bottom: 0.6rem;
         }
+        .flash-opt-gif {
+            width: 100%; border-radius: 8px; display: block; margin-bottom: 0.6rem;
+            max-height: 160px; object-fit: cover;
+        }
+        .flash-gif-badge {
+            position: absolute; top: 6px; left: 6px;
+            background: rgba(0,0,0,0.75); color: #fff;
+            font-size: 0.48rem; font-weight: 900; letter-spacing: 1px;
+            padding: 2px 6px; border-radius: 3px; text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.25); z-index: 2;
+        }
         .flash-opt-video-wrap {
             position: relative; width: 100%; border-radius: 8px; overflow: hidden;
             margin-bottom: 0.6rem; cursor: pointer;
@@ -619,10 +630,12 @@
             const newBadge = isNew(post.date) ? `<div class="new-badge">NUEVO</div>` : '';
 
             if (post.flash) {
-                const hasMedia = !!(post.image || post.video || post.tweet);
-                // Thumbnail: imagen propia, o miniatura de YouTube con play si hay vídeo
+                const hasMedia = !!(post.image || post.gif || post.video || post.tweet);
+                // Thumbnail: GIF, imagen, o miniatura de YouTube con play si hay vídeo
                 let optImg = '';
-                if (post.video) {
+                if (post.gif) {
+                    optImg = `<div class="flash-opt-video-wrap" style="position:relative;"><img class="flash-opt-gif" src="${escapeHtml(post.gif)}" alt="" loading="lazy" onerror="this.style.display='none'"><span class="flash-gif-badge">GIF</span></div>`;
+                } else if (post.video) {
                     const ytMatch = post.video.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/);
                     if (ytMatch) {
                         const thumb = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
@@ -805,7 +818,9 @@
         const post = allPosts.find(p => p.id === id);
         if (!post) return;
         let html = '';
-        if (post.video) {
+        if (post.gif) {
+            html = `<img class="media-modal-img" src="${post.gif}" alt="${post.title || ''}" style="width:100%;display:block;border-radius:0;">`;
+        } else if (post.video) {
             // Soporte YouTube embed limpio
             let src = post.video;
             if (src.includes('youtube.com/watch')) {
@@ -817,9 +832,9 @@
             }
             html = `<div class="media-modal-iframe-wrap"><iframe src="${src}" allowfullscreen allow="autoplay"></iframe></div>`;
         } else if (post.tweet) {
-            let tweetUrl = post.tweet;
-            let tweetId = tweetUrl.split('/').pop().split('?')[0];
-            html = `<div class="media-modal-iframe-wrap"><iframe src="https://platform.twitter.com/embed/Tweet.html?id=${tweetId}" scrolling="no"></iframe></div>`;
+            let tweetUrl = post.tweet.replace('x.com', 'twitter.com');
+            let tweetId = tweetUrl.split('/status/')[1]?.split('?')[0];
+            html = `<div class="media-modal-iframe-wrap"><iframe src="https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&theme=dark" scrolling="no"></iframe></div>`;
         } else if (post.image) {
             html = `<img class="media-modal-img" src="${post.image}" alt="${post.title || ''}">`;
         }
