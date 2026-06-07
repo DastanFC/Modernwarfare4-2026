@@ -193,8 +193,8 @@
             50%       { text-shadow: 0 0 8px rgba(255,214,0,0.7), 0 0 18px rgba(255,214,0,0.3); }
         }
         .flash-badge {
-            background: none; color: #ffd600; font-size: 0.75rem; font-weight: 900;
-            letter-spacing: 2px; padding: 0; white-space: nowrap;
+            background: none; color: #ffd600; font-size: 0.55rem; font-weight: 900;
+            letter-spacing: 1px; padding: 0; white-space: nowrap;
             flex-shrink: 0; align-self: center;
             display: inline-flex; align-items: center; justify-content: center;
             animation: flashGlow 2.4s ease-in-out infinite;
@@ -602,7 +602,15 @@
 
             if (post.flash) {
                 const hasMedia = !!(post.image || post.video || post.tweet);
-                const optImg = post.image && !post.video ? `<img class="flash-opt-img" src="${escapeHtml(post.image)}" alt="" loading="lazy" onerror="this.style.display='none'">` : '';
+                // Thumbnail: imagen propia, o miniatura de YouTube si hay vídeo
+                let thumbUrl = '';
+                if (post.image) {
+                    thumbUrl = post.image;
+                } else if (post.video) {
+                    const ytMatch = post.video.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/);
+                    if (ytMatch) thumbUrl = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
+                }
+                const optImg = thumbUrl ? `<img class="flash-opt-img" src="${escapeHtml(thumbUrl)}" alt="" loading="lazy" onerror="this.style.display='none'">` : '';
                 const flashContent = (post.content||post.excerpt||'').replace(/<[^>]*>/g,'');
                 const cardStyle = hasMedia ? `cursor:pointer` : `cursor:default`;
                 return `<div class="news-card flash-card" data-id="${post.id}" data-flash-media="${hasMedia ? '1' : '0'}" style="animation-delay:${i*0.05}s;${cardStyle}">
