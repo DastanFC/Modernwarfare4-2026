@@ -208,16 +208,22 @@
             animation: flashGlow 2.4s ease-in-out infinite;
             text-transform: uppercase;
         }
-        .flash-badge-dot {
-            width: 7px; height: 7px; border-radius: 50%; background: #e53935; flex-shrink: 0;
-            animation: redBlink 1.1s ease-in-out infinite;
-        }
+        /* flash-badge-dot removed – dot only on DIRECTO badge */
         .flash-source {
             font-size: 0.57rem; color: #666; margin-top: 0.25rem; display: flex; align-items: center; gap: 3px;
         }
         .flash-source a { color: #4caf50; text-decoration: none; }
         .flash-source a:hover { text-decoration: underline; }
         .flash-rel-time { font-size: 0.57rem; color: #555; margin-left: auto; flex-shrink: 0; }
+        .flash-tweet-wrap {
+            width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 0.6rem;
+            background: #0d1117; border: 1px solid rgba(255,255,255,0.08);
+            min-height: 180px; position: relative;
+        }
+        .flash-tweet-wrap iframe {
+            width: 100%; min-height: 180px; border: none; display: block;
+            border-radius: 10px;
+        }
 
         /* ===== LIVE CARD ===== */
         .news-card.live-card { border-color: rgba(229,57,53,0.45); cursor: pointer; }
@@ -747,6 +753,12 @@
                         const thumb = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
                         optImg = `<div class="flash-opt-video-wrap"><img src="${escapeHtml(thumb)}" alt="" loading="lazy" onerror="this.style.display='none'"><div class="flash-play-btn"></div></div>`;
                     }
+                } else if (post.tweet) {
+                    const tweetRaw = post.tweet.replace('x.com', 'twitter.com');
+                    const tweetId  = tweetRaw.split('/status/')[1]?.split('?')[0];
+                    if (tweetId) {
+                        optImg = `<div class="flash-tweet-wrap"><iframe src="https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&theme=dark&chrome=noheader" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div>`;
+                    }
                 } else if (post.image) {
                     optImg = `<img class="flash-opt-img" src="${escapeHtml(post.image)}" alt="" loading="lazy" onerror="this.style.display='none'">`;
                 }
@@ -799,7 +811,7 @@
                                 <div class="flash-account-name">MW4 Esp</div>
                                 <div class="flash-account-handle">@MW4esp</div>
                             </div>
-                            <div class="flash-badge"><span class="flash-badge-dot"></span>Flash</div>
+                            <div class="flash-badge">⚡ Flash</div>
                         </div>
                         <div class="flash-text">${post.content || escapeHtml(post.excerpt) || ''}</div>
                         ${optImg}
