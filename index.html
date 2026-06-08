@@ -216,6 +216,7 @@
         .flash-source a:hover { text-decoration: underline; }
         .flash-rel-time { font-size: 0.57rem; color: #555; margin-left: auto; flex-shrink: 0; }
         .flash-tweet-preview-link { text-decoration: none; display: block; margin-bottom: 0.6rem; }
+        .flash-opt-mp4 { width: 100%; border-radius: 10px; margin-bottom: 0.6rem; max-height: 300px; object-fit: cover; display: block; background: #000; }
         .flash-tweet-preview {
             display: flex; align-items: center; gap: 0.65rem;
             background: #0d1117; border: 1px solid rgba(255,255,255,0.1);
@@ -747,11 +748,13 @@
             const newBadge = isNew(post.date) ? `<div class="new-badge">NUEVO</div>` : '';
 
             if (post.flash) {
-                const hasMedia = !!(post.image || post.gif || post.video) && !post.tweet;
+                const hasMedia = !!(post.image || post.gif || post.video || post.mp4) && !post.tweet;
                 // Thumbnail: GIF, imagen, o miniatura de YouTube con play si hay vídeo
                 let optImg = '';
                 if (post.gif) {
                     optImg = `<div class="flash-opt-video-wrap" style="position:relative;"><img class="flash-opt-gif" src="${escapeHtml(post.gif)}" alt="" loading="lazy" onerror="this.style.display='none'"><span class="flash-gif-badge">GIF</span></div>`;
+                } else if (post.mp4) {
+                    optImg = `<video src="${escapeHtml(post.mp4)}" autoplay muted loop playsinline class="flash-opt-mp4" onerror="this.style.display='none'" onclick="event.stopPropagation()"></video>`;
                 } else if (post.video) {
                     const ytMatch = post.video.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/);
                     if (ytMatch) {
@@ -1006,6 +1009,8 @@
                 src = `https://www.youtube.com/embed/${vid}?autoplay=1`;
             }
             html = `<div class="media-modal-iframe-wrap"><iframe src="${src}" allowfullscreen allow="autoplay"></iframe></div>`;
+        } else if (post.mp4) {
+            html = `<video src="${escapeHtml(post.mp4)}" autoplay muted loop playsinline controls style="width:100%;display:block;border-radius:0;max-height:80vh;background:#000;"></video>`;
         } else if (post.tweet) {
             const _tu = post.tweet.trim();
             const _tm = _tu.match(/(?:twitter|x)\.com\/([^/?#]+)/);
