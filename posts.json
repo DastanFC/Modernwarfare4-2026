@@ -14,32 +14,6 @@
     "updates": []
   },
   {
-    "id": 9999999999999,
-    "title": "Showcase Xbox en directo — DMZ en vivo",
-    "tag": "oficial",
-    "image": "",
-    "excerpt": "Seguimos el showcase de Xbox en directo. Aquí todas las novedades de DMZ conforme vayan llegando.",
-    "content": "Seguimos el showcase de Xbox en directo. Aquí todas las novedades de DMZ conforme vayan llegando.",
-    "updated": false,
-    "flash": true,
-    "live": true,
-    "date": "2026-06-07T19:00:00.000Z",
-    "updates": [
-      {
-        "time": "2026-06-07T19:05:00.000Z",
-        "text": "¡Comienza el showcase! Primera imagen del mapa de DMZ: Hajin."
-      },
-      {
-        "time": "2026-06-07T19:12:00.000Z",
-        "text": "Confirmado: DMZ tendrá chat de proximidad con caída de volumen por distancia."
-      },
-      {
-        "time": "2026-06-07T19:20:00.000Z",
-        "text": "Base de operaciones mostrada en vídeo. Campo de tiro, armero y fabricación confirmados."
-      }
-    ]
-  },
-  {
     "id": 1780871082758,
     "title": "Primer vistazo al movimiento de arrastrar para revivir en MW4",
     "tag": "oficial",
