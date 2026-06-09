@@ -1,5 +1,18 @@
 [
   {
+    "id": 1781000365762,
+    "title": "Comparación DMZ1 vs DMZ2 en la forma de pedir ayuda amiga.",
+    "tag": "informacion",
+    "image": "https://i.ibb.co/9km4z0hG/screenshot-764.png",
+    "excerpt": "Comparamos DM1 con DM2 en cuanto al sistema de pedir ayuda.",
+    "content": "<p><br></p><p><br></p><p><img src=\"https://i.ibb.co/9km4z0hG/screenshot-764.png\" alt=\"imagen\">Basándonos en la imagen , estamos ante un cambio radical en la mecánica de muerte y reanimación entre la primera versión de DMZ y DMZ 2. El antiguo sistema de \"súplica\" (Plea System) ha sido completamente reemplazado por el sistema de \"torniquete\" (Tourniquet System) haciendo que no tengas que depender de un aliado para que te reanime o aumentando el tiempo de aguante para que un compañero lo haga.</p><h2>Esto es lo que cambia exactamente y cómo afecta a la jugabilidad:</h2><p>1. DMZ 1: <b>El Sistema de Súplica</b> (Plea System)</p><p>En el DMZ original, cuando caías eliminado, tu destino dependía enteramente de la diplomacia o de la buena voluntad de otros jugadores.</p><p>El proceso: Caías abatido -&gt; Presionabas un botón para suplicar ayuda (Plea for Help) -&gt; Esperabas a que tu equipo o un equipo enemigo te escuchara -&gt; Te reanimaban -&gt; Volvías a la batalla (muchas veces asimilado en el pelotón enemigo).</p><p>El problema que soluciona: Eliminaba la frustración de morir definitivamente a mitad de partida, pero dependías al 100% de que alguien decidiera ayudarte de forma externa.</p><p>2. DMZ 2: <b>El Sistema de Torniquete</b> (Tourniquet System)</p><p>DMZ 2 introduce una mecánica mucho más táctica, realista y de \"autogestión\" para los momentos de máxima tensión cuando no tienes un kit de autoreanimación clásico.</p><p>El proceso: Si no tienes Self-Revive, puedes aplicarte un torniquete táctico (como el CAT que se ve en la mano del personaje en la foto).</p><p>Estado Herido (Wounded State): Al usar el torniquete, entras en un estado \"herido\" temporal y se activa una cuenta atrás (en la imagen se muestra un temporizador de 00:45 segundos).</p><p>La curación: Durante ese tiempo de descuento, tienes que buscar y usar objetos médicos para estabilizarte y curarte por completo antes de que el tiempo se agote y mueras desangrado.</p><p><b>Conclusión </b>:&nbsp;Con este cambio, DMZ 2 se vuelve mucho más hardcore y autosuficiente. Ya no vale quedarse tirado en el suelo esperando a que un equipo enemigo sea piadoso y te reclute; ahora, si caes, la prioridad absoluta es contener la hemorragia tú mismo, buscar suministros médicos a contrarreloj y adaptarte para sobrevivir.</p>",
+    "updated": false,
+    "flash": false,
+    "live": false,
+    "date": "2026-06-09T00:00:00.000Z",
+    "updates": []
+  },
+  {
     "id": 1781000009612,
     "title": "Árbol de habilidades de DMZ al descubierto.",
     "tag": "oficial",
